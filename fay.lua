@@ -175,11 +175,11 @@ function Sertify.new(testInfo)
 		end
 		
 		self.toBeFrozen = function(self)
-			return self:__Report(isElementFrozen(self.initialValue) == true, testInfo.description)
+			return self:__Report(isElementFrozen(self.initialValue), testInfo.description)
 		end
 	
 		self.toNotBeFrozen = function(self)
-			return self:__Report(isElementFrozen(self.initialValue) == false, testInfo.description)
+			return self:__Report(not isElementFrozen(self.initialValue), testInfo.description)
 		end
 						
 		self.toBeAPed = function(self)
