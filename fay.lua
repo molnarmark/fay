@@ -60,45 +60,33 @@ function Sertify.new(testInfo)
 			return self:__Report(self.initialValue == nil, testInfo.description)
 		end		
 		
-		self.toBeEmpty = function(self)
-			local evaluation
-			if type(self.initialValue) == "string" then
-				evaluation = self.initialValue:len() == 0
-			elseif type(self.initialValue) == "table" then
-				evaluation = #self.initialValue == 0
-			else
-				evaluation = false
-			end
-			
-			return self:__Report(self.initialValue == nil, testInfo.description)
-		end	
-	
 		self.toBeOfLength = function(self, right)
-			local evaluation
-			if type(self.initialValue) == "string" then
-				evaluation = self.initialValue:len() == right
-			elseif type(self.initialValue) == "table" then
-				evaluation = #self.initialValue == right
-			else
-				evaluation = false
-			end
-			
-			return self:__Report(self.initialValue == nil, testInfo.description)
+		    local evaluation
+		    if type(self.initialValue) == "string" or type(self.initialValue) == "table" then
+			evaluation = #self.initialValue == right
+		    end
+
+		    return self:__Report(self.initialValue, testInfo.description)
 		end		
-		
+
 		self.toBeLessThan = function(self, right)
-			local evaluation
-			if type(self.initialValue) == "string" then
-				evaluation = self.initialValue:len() < right
-			elseif type(self.initialValue) == "table" then
-				evaluation = #self.initialValue < right
-			else
-				evaluation = false
-			end
-			
-			return self:__Report(self.initialValue == nil, testInfo.description)		
+		    local evaluation
+		    if type(self.initialValue) == "string" or type(self.initialValue) == "table" then
+			evaluation = #self.initialValue < right
+		    end
+
+		    return self:__Report(self.initialValue, testInfo.description)		
 		end
-		
+
+		self.toBeGreaterThan = function(self, right)
+		    local evaluation
+		    if type(self.initialValue) == "string" or type(self.initialValue) == "table" then
+			evaluation = #self.initialValue > right
+		    end
+
+		    return self:__Report(self.initialValue, testInfo.description)		
+		end	
+
 		self.toBeGreaterThan = function(self, right)
 			local evaluation
 			if type(self.initialValue) == "string" then
